@@ -1,0 +1,31 @@
+<!-- app/views/tasks/show.html.erb -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Task Details</title>
+  <%= stylesheet_link_tag "application", media: "all" %>
+</head>
+<body class="container mt-5">
+  <h1 class="text-center mb-4">Task Details</h1>
+
+  <div class="card">
+    <div class="card-body">
+      <h3 class="card-title"><%= @task.title %></h3>
+      <p class="card-text"><strong>Details:</strong> <%= @task.details %></p>
+      <p class="card-text">
+        <strong>Completed:</strong>
+        <% if @task.completed %>
+          ✅ Yes
+        <% else %>
+          ❌ No
+        <% end %>
+      </p>
+
+      <div class="mt-4">
+        <%= link_to "Edit Task", edit_task_path(@task), class: "btn btn-warning" %>
+        <%= link_to "Back to Task List", tasks_path, class: "btn btn-secondary" %>
+      </div>
+    </div>
+  </div>
+</body>
+</

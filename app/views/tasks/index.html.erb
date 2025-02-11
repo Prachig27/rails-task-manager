@@ -1,0 +1,45 @@
+<!-- app/views/tasks/index.html.erb -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Task List</title>
+  <%= stylesheet_link_tag "application", media: "all" %>
+</head>
+<body class="container mt-5">
+  <h1 class="text-center mb-4">Task List</h1>
+
+  <table class="table table-bordered table-striped">
+    <thead class="table-dark">
+      <tr>
+        <th>Title</th>
+        <th>Details</th>
+        <th>Completed</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @tasks.each do |task| %>
+        <tr>
+          <td><%= task.title %></td>
+          <td><%= task.details %></td>
+          <td>
+            <% if task.completed %>
+              ✅
+            <% else %>
+              ❌
+            <% end %>
+          </td>
+          <td>
+            <%= link_to "Edit", edit_task_path(task), class: "btn btn-primary btn-sm" %>
+            <%= link_to "Delete", task_path(task), method: :delete, data: { turbo_method: :delete, confirm: "Are you sure?" }, class: "btn btn-danger btn-sm" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <div class="text-center mt-4">
+    <%= link_to "New Task", new_task_path, class: "btn btn-success" %>
+  </div>
+</body>
+</html>
